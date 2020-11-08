@@ -2,6 +2,25 @@
 
 This is demo for RESTful API for TO DO Application
 
+## Installation
+
+- clone this repository
+- run `composer install`
+- create env file `cp .env.example .env`
+- generate application key `php artisan key:generate`
+- adjust database connection
+- create `database.sqlite` in database directory for testing
+- run migration `php artisan migrate`
+- seed data `php artisan db:seed`
+
+## Testing
+
+for run testing:
+
+```bash
+./vendor/bin/phpunit
+```
+
 ## Endpoints
 
 ### Authentication
