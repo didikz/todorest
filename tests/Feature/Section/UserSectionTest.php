@@ -28,7 +28,6 @@ class UserSectionTest extends TestCase
         $response->assertJson([
             'data' => [
                 [
-                    'id' => $sections[0]->id,
                     'content' => $sections[0]->content
                 ]
             ]

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\Auth\LoginController;
+use App\Http\Controllers\API\Todo\SectionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/auth', [LoginController::class, 'attempt'])->name('api.auth');
 
-Route::middleware('auth:sanctum')->group(function () {
-    
+Route::middleware('auth:sanctum')->name('api.')->group(function () {
+    Route::resource('/sections', SectionController::class);
 });
