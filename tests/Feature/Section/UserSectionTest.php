@@ -77,4 +77,21 @@ class UserSectionTest extends TestCase
             ]
         ]);
     }
+
+    public function test_user_is_able_to_view_single_section_data()
+    {
+        $user = User::factory()->create();
+        $section = Section::factory()->create(['user_id' => $user->id]);
+        $response = $this->actingAs($user)->withHeaders([
+            'Accept' => 'application/json'
+        ])->get(route('api.sections.show', $section));
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'data' => [
+                'id' => $section->id,
+                'content' => $section->content
+            ]
+        ]);
+    }
 }

@@ -33,14 +33,12 @@ class SectionController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Section $section
+     * @return SectionResource
      */
-    public function show($id)
+    public function show(Section $section)
     {
-        //
+        return new SectionResource($section);
     }
 
     /**
