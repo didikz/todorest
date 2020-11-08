@@ -19,5 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::post('/auth', [LoginController::class, 'attempt'])->name('api.auth');
 
 Route::middleware('auth:sanctum')->name('api.')->group(function () {
-    Route::resource('/sections', SectionController::class);
+    Route::resource('/sections', SectionController::class)->except(['create', 'edit']);
 });
