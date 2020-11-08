@@ -97,3 +97,53 @@ Sample success response (200):
     }
 }
 ```
+
+#### Create Section
+
+- endpoint: `/api/sections`
+- method: `POST`
+- headers:
+  - `Accept: application/json`
+  - `Authorization: bearer <token>`
+  - `Content-Type: application/json`
+- body:
+  - `content`: `string`, `required`
+  
+Sample success response (201):
+
+```json
+{
+        "data": {
+            "id": 40,
+            "content": "new section",
+            "created_at": "1 second ago",
+            "updated_at": "1 second ago"
+        }
+    }
+```
+
+#### Update Section
+
+- endpoint: `/api/sections/{sectionId}`
+- method: `PUT`
+- headers:
+  - `Accept: application/json`
+  - `Authorization: bearer <token>`
+  - `Content-Type: application/json`
+- parameter:
+  - `sectionId`: section id
+- body:
+  - `content`: `string`, `required`
+  
+Sample success response (201):
+
+```json
+{
+        "data": {
+            "id": 40,
+            "content": "updated section",
+            "created_at": "1 second ago",
+            "updated_at": "1 second ago"
+        }
+    }
+```
