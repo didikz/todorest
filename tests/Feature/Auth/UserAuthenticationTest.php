@@ -12,7 +12,6 @@ class UserAuthenticationTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * A basic feature test example.
      *
      * @return void
      */
@@ -20,7 +19,9 @@ class UserAuthenticationTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->postJson(route('api.auth'), [
+        $response = $this->withHeaders([
+            'Accept' => 'application/json'
+        ])->postJson(route('api.auth'), [
             'email' => $user->email,
             'password' => 'password'
         ]);
@@ -29,14 +30,20 @@ class UserAuthenticationTest extends TestCase
 
         $user->refresh();
 
-        $this->assertNotNull($user->tokens);
+        $this->assertEquals(1, $user->tokens->count());
     }
 
+    /**
+     *
+     * @return void
+     */
     public function test_user_is_unable_to_login_using_invalid_data()
     {
         $user = User::factory()->create();
 
-        $response = $this->postJson(route('api.auth'), [
+        $response = $this->withHeaders([
+            'Accept' => 'application/json'
+        ])->postJson(route('api.auth'), [
             'email' => $user->email,
             'password' => 'wrongpassword'
         ]);
