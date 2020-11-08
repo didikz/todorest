@@ -20,4 +20,5 @@ Route::post('/auth', [LoginController::class, 'attempt'])->name('api.auth');
 
 Route::middleware('auth:sanctum')->name('api.')->group(function () {
     Route::resource('/sections', SectionController::class)->except(['create', 'edit']);
+    Route::get('/sections/{section}/tasks', )
 });
