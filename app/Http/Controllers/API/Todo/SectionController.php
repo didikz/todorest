@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\API\Todo;
 
 use App\Actions\Todo\CreateSectionService;
+use App\Actions\Todo\UpdateSectionService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\Todo\CreateSectionRequest;
+use App\Models\Section;
 use Illuminate\Http\Request;
 use App\Http\Resources\Section as SectionResource;
 
@@ -42,26 +44,14 @@ class SectionController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param CreateSectionRequest $request
+     * @param Section $section
+     * @param UpdateSectionService $updateSectionService
+     * @return SectionResource
      */
-    public function edit($id)
+    public function update(CreateSectionRequest $request, Section $section, UpdateSectionService $updateSectionService)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return new SectionResource($updateSectionService->handle($section, $request->content));
     }
 
     /**
