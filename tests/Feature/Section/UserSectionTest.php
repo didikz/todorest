@@ -11,7 +11,7 @@ use Tests\TestCase;
 class UserSectionTest extends TestCase
 {
     use RefreshDatabase;
-    
+
     /**
      * A basic feature test example.
      *
@@ -54,5 +54,27 @@ class UserSectionTest extends TestCase
             ]
         ]);
         $this->assertEquals(1, $user->sections->count());
+    }
+
+    public function test_user_is_able_to_update_section_data()
+    {
+        $user = User::factory()->create();
+        $section = Section::factory()->create(['user_id' => $user->id]);
+        $response = $this->actingAs($user)->withHeaders([
+            'Accept' => 'application/json'
+        ])->putJson(route('api.sections.update', $section), [
+            'content' => 'lorem ipsum dolor sit amet'
+        ]);
+
+        $response->assertStatus(200);
+
+        $section->refresh();
+
+        $response->assertJson([
+            'data' => [
+                'id' => $section->id,
+                'content' => $section->content
+            ]
+        ]);
     }
 }
