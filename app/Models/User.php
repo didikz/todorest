@@ -49,4 +49,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Section::class)->orderByDesc('created_at');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class)->orderByDesc('created_at');
+    }
 }
