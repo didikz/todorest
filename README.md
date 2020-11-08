@@ -135,7 +135,7 @@ Sample success response (201):
 - body:
   - `content`: `string`, `required`
   
-Sample success response (201):
+Sample success response (200):
 
 ```json
 {
@@ -145,5 +145,47 @@ Sample success response (201):
             "created_at": "1 second ago",
             "updated_at": "1 second ago"
         }
-    }
+}
+```
+
+#### Detail Section
+
+- endpoint: `/api/sections/{sectionId}`
+- method: `GET`
+- headers:
+  - `Accept: application/json`
+  - `Authorization: bearer <token>`
+  - `Content-Type: application/json`
+- parameter:
+  - `sectionId`: section id
+  
+Sample success response (200):
+
+```json
+{
+        "data": {
+            "id": 40,
+            "content": "content section",
+            "created_at": "1 second ago",
+            "updated_at": "1 second ago"
+        }
+}
+```
+
+#### Delete Section
+
+- endpoint: `/api/sections/{sectionId}`
+- method: `DELETE`
+- headers:
+  - `Accept: application/json`
+  - `Authorization: bearer <token>`
+- parameter:
+  - `sectionId`: section id
+  
+Sample success response (200):
+
+```json
+{
+        "data": null
+}
 ```
