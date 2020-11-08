@@ -94,4 +94,16 @@ class UserSectionTest extends TestCase
             ]
         ]);
     }
+
+    public function test_user_is_able_to_delete_section_data()
+    {
+        $user = User::factory()->create();
+        $section = Section::factory()->create(['user_id' => $user->id]);
+        $response = $this->actingAs($user)->withHeaders([
+            'Accept' => 'application/json'
+        ])->delete(route('api.sections.destroy', $section));
+
+        $response->assertStatus(200);
+        $this->assertDatabaseMissing('sections', ['id' => $section->id]);
+    }
 }

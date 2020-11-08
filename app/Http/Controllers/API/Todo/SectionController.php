@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\Todo;
 
 use App\Actions\Todo\CreateSectionService;
+use App\Actions\Todo\DeleteSectionService;
 use App\Actions\Todo\UpdateSectionService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\Todo\CreateSectionRequest;
@@ -53,13 +54,15 @@ class SectionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Section $section
+     * @param DeleteSectionService $deleteSectionService
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Section $section, DeleteSectionService $deleteSectionService)
     {
-        //
+        $deleteSectionService->handle($section);
+
+        return response()->json(['data' => null]);
     }
 }
