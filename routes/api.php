@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/auth', [LoginController::class, 'attempt'])->name('api.auth');
+
+Route::middleware('auth:sanctum')->group(function () {
+
+});
