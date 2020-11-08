@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\API\Todo;
 
+use App\Actions\Todo\CreateSectionService;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\Todo\CreateSectionRequest;
 use Illuminate\Http\Request;
 use App\Http\Resources\Section as SectionResource;
 
@@ -19,24 +21,13 @@ class SectionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param CreateSectionRequest $request
+     * @param CreateSectionService $createSectionService
+     * @return SectionResource
      */
-    public function create()
+    public function store(CreateSectionRequest $request, CreateSectionService $createSectionService)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return new SectionResource($createSectionService->handler($request->user(), $request->content));
     }
 
     /**
